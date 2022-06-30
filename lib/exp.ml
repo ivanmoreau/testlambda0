@@ -28,6 +28,11 @@ let rec handleApp e = match e with
 | x::[] -> x
 | _ -> failwith "Error"
 
+let handleNat n = let rec f n = match n with
+| 0 -> BVar(0, "x")
+| n -> App(BVar(1, "f"), f @@ n - 1) in
+  Fun("f", Fun("x", f n))
+
 let rec to_string = function
 | Var s -> "Var(" ^ s ^ ")"
 | Call xs ->

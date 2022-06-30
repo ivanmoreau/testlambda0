@@ -1,4 +1,5 @@
 %token <string> VAR
+%token <int> NAT
 %token FUN
 %token TO
 %token COMMA
@@ -18,6 +19,7 @@ expr :
 
 app : 
   | s = VAR; { Exp.BVar (-1, s) }
+  | s = NAT; { Exp.handleNat s }
   | s = lam; { s }
   | LPAREN; es = expr ; RPAREN { es }
 
