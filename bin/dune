@@ -1,4 +1,3 @@
 (executable
- (public_name lambda)
  (name main)
- (libraries lambda))
+ (libraries lambda) (modes js))

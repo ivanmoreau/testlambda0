@@ -24,4 +24,4 @@ app :
   | LPAREN; es = expr ; RPAREN { es }
 
 lam :
-  | FUN; args = list (VAR); TO; e = expr; { Exp.genfn(args, e, 0) }
+  | FUN; args = nonempty_list (VAR); TO; e = expr; { Exp.genfn(args, e, 0) }

@@ -1,14 +1,10 @@
-type t =
-| Var of string
-| Call of t list
-
 type lExp =
   | BVar of int * string
   | App of lExp * lExp
   | Fun of string * lExp
 
 let rec lexp_str : lExp -> string = function
-| BVar (_, m) -> m
+| BVar (n, m) -> m ^ "[" ^ string_of_int n ^ "]"
 | App (e, e') -> "(" ^ lexp_str e ^ " " ^ lexp_str e' ^ ")"
 | Fun (n, e) -> "λ" ^ n ^ " -> " ^ lexp_str e
 
@@ -33,8 +29,4 @@ let handleNat n = let rec f n = match n with
 | n -> App(BVar(1, "f"), f @@ n - 1) in
   Fun("f", Fun("x", f n))
 
-let rec to_string = function
-| Var s -> "Var(" ^ s ^ ")"
-| Call xs ->
-    let s = List.map to_string xs |> String.concat " " in
-    "Call(" ^ s ^ ")"
+
