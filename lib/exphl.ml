@@ -7,6 +7,8 @@ type stmt =
 and expr =
   | Lam of (string list) * (expr list)
   | Match of expr * matcher
+  | App of string * (expr list)
+  | Var of string
   | Let of string * expr
   | Ret of expr
 and matcher = 

@@ -40,5 +40,9 @@ lambda :
 args :
   | xs = separated_nonempty_list(COMMA, IDENT) { xs }
 
+exprs :
+  | xs = separated_nonempty_list(COMMA, expr) { xs }
+
 small_expr :
-  | IDENT; 
+  | n = IDENT; LPAREN; xs = args; RPAREN; { Exphl.App(n, xs) }
+  | MATCH 
